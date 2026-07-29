@@ -1,0 +1,47 @@
+[project]
+name = "autoengineering"
+version = "0.1.0"
+description = "A controlled experiment system for software change"
+readme = "README.md"
+authors = [
+    { name = "jxyztplk", email = "53660855+jxyztplk@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "jinja2>=3.1.6",
+    "pydantic>=2.13.4",
+    "rich>=15.0.0",
+    "ruamel-yaml>=0.19.1",
+    "typer>=0.27.0",
+]
+
+[project.scripts]
+ autoeng = "autoengineering.cli.app:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+packages = ["autoengineering"]
+
+[build-system]
+requires = ["uv_build>=0.8.6,<0.9.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "mypy>=2.3.0",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.16.0",
+]
